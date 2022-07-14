@@ -1,0 +1,77 @@
+# log configuration
+logging:
+  level:
+    root: INFO
+  org:
+    springframework: ERROR
+    hibernate: ERROR
+
+# server configuration
+server:
+  port: 9000
+
+# customized properties
+customized:
+  application:
+    name: user service
+    description: This is a common user service
+
+# Spring environment configuration
+spring:
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+---
+spring:
+  profiles:
+    default: "development"
+
+#------------------------------------------------------------------------------------------------------
+# development profile
+#------------------------------------------------------------------------------------------------------
+---
+spring:
+  config:
+    activate:
+      on-profile: development
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_service?serverTimezone=UTC
+    username: myUser
+    password: myUser
+server:
+  port: 9000
+
+#------------------------------------------------------------------------------------------------------
+# staging profile
+#------------------------------------------------------------------------------------------------------
+---
+spring:
+  config:
+    activate:
+      on-profile: staging
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_service?serverTimezone=UTC
+    username: myUser
+    password: myUser
+server:
+  port: 9000
+
+#------------------------------------------------------------------------------------------------------
+# production profile
+#------------------------------------------------------------------------------------------------------
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_service?serverTimezone=UTC
+    username: myUser
+    password: myUser
+server:
+  port: 9000
